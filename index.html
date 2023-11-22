@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #000000c3;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1em;
+            margin: 0 1em;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        .order-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+          }
+      
+          .menu-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+          }
+      
+          .menu-item:hover {
+            background-color: #f0f0f0;
+          }
+      
+          .menu-item img {
+            max-width: 100%;
+            max-height: 100px;
+            margin-bottom: 10px;
+          }
+      
+          #order-list {
+            margin-top: 20px;
+          }
+      
+          #total {
+            font-weight: bold;
+          }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Taj Restaurant</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#Menu">Menu</a>
+        <a href="#Parties">Parties</a>
+        <a href="#order">Order Now</a>
+    </nav>
+
+    <section id="home">
+        <h2>Hello ! Welcome To TAJ RESTARANT : )</h2>
+        <p>Welcome to our page , we are offering Menu lika 
+            Non-veg and Veg food items with Reatarant style. 
+we are providing service high quality maitainance.
+ </p>
+    </section>
+
+    <section id="Menu">
+        <h2>Menu</h2>
+        <p>We host a variety of events with high quality service like marriagr , parties, functions , any type of events we best cateering service</p>
+    </section>
+
+    <div class="menu-container">
+        <!-- Non-Veg Items -->
+        <div class="menu-item" onclick="addToOrder('Chicken Biryani', 250)">
+          <img src="chikbir.jpg" alt="Chicken Biryani">
+          <p>Chicken Biryani</p>
+          <p>₹250</p>
+        </div>
+
+        <div class="menu-item" onclick="addToOrder('Vegetable  Biryani', 180)">
+            <img src="vegbir.jpg" alt="Vegetable Biryani">
+            <p>Vegetable Biryani</p>
+            <p>₹180</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Mutton Biryani', 350)">
+            <img src="muttonbir.jpg" alt="Mutton Biryani">
+            <p>Mutton Biryani</p>
+            <p>₹350</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Panner Biryani', 200)">
+            <img src="pannerbir.jpg" alt="Panner Biryani">
+            <p>Panner Biryani</p>
+            <p>₹200</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Fish Biryani', 270)">
+            <img src="fishbir.webp" alt="Fish Biryani">
+            <p>Fish Biryani</p>
+            <p>₹270</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Mushroom Biryani', 200)">
+            <img src="mushroombir.jpg" alt="Mushroom Biryani">
+            <p>Mushroom Biryani</p>
+            <p>₹200</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Prawns Biryani', 280)">
+            <img src="prawnsbir.jpg" alt="Prawns Biryani">
+            <p>Prawns Biryani</p>
+            <p>₹280</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Veg Fried Rice', 150)">
+            <img src="vegfrice.jpg" alt="Veg Fried Rice">
+            <p>Veg Fried Rice</p>
+            <p>₹150</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Special Biryani', 400)">
+            <img src="splbir.jpg" alt="special Biryani">
+            <p>Special Biryani</p>
+            <p>₹400</p>
+          </div>
+
+          <div class="menu-item" onclick="addToOrder('Egg Fried Rice', 180)">
+            <img src="eggfrice.jpg" alt="Egg Fried Rice">
+            <p>Egg Fried Rice</p>
+            <p>₹180</p>
+          </div>
+
+
+        </div>
+        <div id="order-list">
+            <h2>Your Order:</h2>
+            <ul id="order-items"></ul>
+            <p id="total">Total: ₹<span id="total-price">0</span></p>
+          </div>
+        
+          <script>
+            let order = [];
+            let total = 0;
+        
+            function addToOrder(item, price) {
+              order.push({ item, price });
+              total += price;
+              updateOrderList();
+            }
+        
+            function updateOrderList() {
+              const orderList = document.getElementById('order-items');
+              const totalPriceElement = document.getElementById('total-price');
+        
+              orderList.innerHTML = '';
+              order.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.item} - ₹${item.price}`;
+                orderList.appendChild(li);
+              });
+        
+              totalPriceElement.textContent = total;
+            }
+          </script>
+
+          <section id="Parties">
+            <h2>Parties</h2>
+            <p>Celebrate your joyous occasions with us. we are the taj restarent providing parties celebration all type of quality food and high level memorable taste we will provide.</p>
+        </section>
+
+        <section id="order">
+            <h2>Place Your Order</h2>
+            <div class="order-form">
+                <form action="#" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+    
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+    
+                    <label for="occasion">Occasion:</label>
+                    <input type="text" id="occasion" name="occasion" required>
+    
+                    <label for="details">Additional Details:</label>
+                    <textarea id="details" name="details" rows="4"></textarea>
+    
+                    <button type="submit">Submit Order</button>
+                </form>
+            </div>
+        </section>
+
+</body>
+</html>
